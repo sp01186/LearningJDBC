@@ -7,12 +7,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class ConnectionFactory {
     private static Connection connection = null;
 
     public static Connection getConnection() throws IOException, SQLException {
-        if (connection == null) {
+        if (connection == null|| !connection.isValid(1)) {
             Properties props = new Properties();
             props.load(new FileReader("src/main/resources/dbconnect.properties"));
             connection = DriverManager.getConnection(
@@ -24,7 +25,7 @@ public class ConnectionFactory {
         return connection;
     }
 
-    public static void closeConnection() throws SQLException {
+    public static void closeConnection() throws SQLException, InterruptedException {
         if (connection != null) {
             connection.close();
         }

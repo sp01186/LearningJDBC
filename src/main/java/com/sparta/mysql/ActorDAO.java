@@ -51,7 +51,7 @@ public class ActorDAO implements DAO<Actor> {
         } finally {
             try {
                 ConnectionFactory.closeConnection();
-            } catch (SQLException e) {
+            } catch (SQLException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -77,7 +77,7 @@ public class ActorDAO implements DAO<Actor> {
         } finally {
             try {
                 ConnectionFactory.closeConnection();
-            } catch (SQLException e) {
+            } catch (SQLException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -119,7 +119,7 @@ public class ActorDAO implements DAO<Actor> {
         } finally {
             try {
                 ConnectionFactory.closeConnection();
-            } catch (SQLException e) {
+            } catch (SQLException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -149,13 +149,13 @@ public class ActorDAO implements DAO<Actor> {
             }
         } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
-        } //finally {
-//            try {
-//                ConnectionFactory.closeConnection();
-//            } catch (SQLException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
+        } finally {
+            try {
+                ConnectionFactory.closeConnection();
+            } catch (SQLException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         return obtainedActor;
     }
 
@@ -184,7 +184,7 @@ public class ActorDAO implements DAO<Actor> {
         } finally {
             try {
                 ConnectionFactory.closeConnection();
-            } catch (SQLException e) {
+            } catch (SQLException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }

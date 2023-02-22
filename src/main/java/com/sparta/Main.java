@@ -19,6 +19,8 @@ public class Main {
 
         System.out.println(actorDAO.findById(20));
         System.out.println(actorDAO.findById(21));
+        System.out.println(actorDAO.findById(22));
+        System.out.println(actorDAO.findById(23));
 
 //        List<Actor> actors = actorDAO.findAll();
 //        System.out.println(actors.get(0));
